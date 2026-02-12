@@ -50,6 +50,7 @@ The application uses a relational MySQL database with the following schema:
 
 ### Entity-Relationship Model
 
+screenshots/databaseTable.png
 ```
 ┌─────────────────┐         ┌─────────────────┐
 │   Categories    │         │      Books      │
