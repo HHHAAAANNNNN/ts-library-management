@@ -1,4 +1,3 @@
-// @ts-ignore
 import { Router } from 'express';
 import { 
   getAllBooks, 
