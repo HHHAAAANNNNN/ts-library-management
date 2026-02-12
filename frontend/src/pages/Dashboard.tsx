@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
 import './Dashboard.css';
@@ -11,6 +12,7 @@ interface Stats {
 
 const Dashboard: React.FC = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [stats, setStats] = useState<Stats>({
     totalCategories: 0,
     totalBooks: 0,
@@ -120,7 +122,7 @@ const Dashboard: React.FC = () => {
       <div className="dashboard-actions">
         <h3>Aksi Cepat</h3>
         <div className="action-cards">
-          <a href="/categories" className="action-card">
+          <div className="action-card" onClick={() => navigate('/categories')}>
             <div className="action-icon">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 4v16m8-8H4" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -130,9 +132,9 @@ const Dashboard: React.FC = () => {
               <h4>Kelola Kategori</h4>
               <p>Tambah, edit, atau hapus kategori buku</p>
             </div>
-          </a>
+          </div>
 
-          <a href="/books" className="action-card">
+          <div className="action-card" onClick={() => navigate('/books')}>
             <div className="action-icon">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 6v6m0 0v6m0-6h6m-6 0H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -142,7 +144,7 @@ const Dashboard: React.FC = () => {
               <h4>Kelola Buku</h4>
               <p>Tambah, edit, atau hapus buku perpustakaan</p>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </div>
