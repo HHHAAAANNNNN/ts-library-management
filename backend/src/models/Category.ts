@@ -1,24 +1,43 @@
 import { pool } from '../config/database';
+import { RowDataPacket, ResultSetHeader } from 'mysql2';
 
 export class Category {
-  // Model methods will be implemented here
   static async findAll() {
-    // TODO: Implement
+    const [rows] = await pool.query<RowDataPacket[]>(
+      'SELECT * FROM categories ORDER BY id DESC'
+    );
+    return rows;
   }
 
   static async findById(id: number) {
-    // TODO: Implement
+    const [rows] = await pool.query<RowDataPacket[]>(
+      'SELECT * FROM categories WHERE id = ?',
+      [id]
+    );
+    return rows[0];
   }
 
-  static async create(data: any) {
-    // TODO: Implement
+  static async create(data: { name: string; description?: string }) {
+    const [result] = await pool.query<ResultSetHeader>(
+      'INSERT INTO categories (name, description) VALUES (?, ?)',
+      [data.name, data.description || null]
+    );
+    return { id: result.insertId, ...data };
   }
 
-  static async update(id: number, data: any) {
-    // TODO: Implement
+  static async update(id: number, data: { name: string; description?: string }) {
+    const [result] = await pool.query<ResultSetHeader>(
+      'UPDATE categories SET name = ?, description = ? WHERE id = ?',
+      [data.name, data.description || null, id]
+    );
+    return result.affectedRows > 0;
   }
 
   static async delete(id: number) {
-    // TODO: Implement
+    const [result] = await pool.query<ResultSetHeader>(
+      'DELETE FROM categories WHERE id = ?',
+      [id]
+    );
+    return result.affectedRows > 0;
   }
 }

@@ -1,6 +1,37 @@
 import { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+
+// Hardcoded admin credentials for demo
+const ADMIN_USERNAME = 'admin';
+const ADMIN_PASSWORD = 'admin123'; // In production, use hashed password
 
 export const login = async (req: Request, res: Response) => {
-  // TODO: Implement login logic
-  res.json({ message: 'Login endpoint' });
+  try {
+    const { username, password } = req.body;
+
+    if (!username || !password) {
+      return res.status(400).json({ error: 'Username and password required' });
+    }
+
+    // Simple authentication check
+    if (username !== ADMIN_USERNAME || password !== ADMIN_PASSWORD) {
+      return res.status(401).json({ error: 'Invalid credentials' });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { username, role: 'admin' },
+      process.env.JWT_SECRET || 'default_secret',
+      { expiresIn: '24h' }
+    );
+
+    res.json({
+      message: 'Login successful',
+      token,
+      user: { username, role: 'admin' }
+    });
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
 };
