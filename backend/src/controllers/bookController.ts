@@ -10,6 +10,8 @@ export const getAllBooks = async (req: Request, res: Response) => {
     if (search) filters.search = search as string;
     
     const books = await Book.findAll(filters);
+    // Sort by ID ascending
+    books.sort((a, b) => a.id - b.id);
     res.json(books);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
