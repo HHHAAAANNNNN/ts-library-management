@@ -67,9 +67,10 @@ const Login: React.FC = () => {
               required
               autoFocus
             />
+              <small>Demo: <code>admin</code></small>
           </div>
 
-          <div className="form-group">
+          <div className="form-group" style={{ marginTop: '-20px' }}>
             <label htmlFor="password">Password</label>
             <input
               id="password"
@@ -79,6 +80,7 @@ const Login: React.FC = () => {
               placeholder="Masukkan password"
               required
             />
+              <small>Demo: <code>admin123</code></small>
           </div>
 
           <button type="submit" className="login-button" disabled={loading}>
@@ -91,12 +93,6 @@ const Login: React.FC = () => {
               'Masuk'
             )}
           </button>
-
-          <div className="demo-credentials">
-            <small>
-              <strong>Demo:</strong> username: <code>admin</code> / password: <code>admin123</code>
-            </small>
-          </div>
         </form>
       </div>
     </div>
