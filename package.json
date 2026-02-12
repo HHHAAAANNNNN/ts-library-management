@@ -2,9 +2,12 @@
   "dependencies": {
     "dotenv": "^17.2.4",
     "express": "^5.2.1",
-    "mysql2": "^3.17.0"
+    "mysql2": "^3.17.0",
+    "react": "^19.2.4"
   },
   "devDependencies": {
-    "@types/express": "^5.0.6"
+    "@types/express": "^5.0.6",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3"
   }
 }
