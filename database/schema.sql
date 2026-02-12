@@ -26,8 +26,3 @@ CREATE TABLE books (
   FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 );
 
--- Sample data for testing
-INSERT INTO categories (name, description) VALUES 
-('Fiction', 'Fictional literature books'),
-('Non-Fiction', 'Non-fictional books'),
-('Science', 'Science and technology books');

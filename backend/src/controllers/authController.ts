@@ -1,10 +1,9 @@
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcryptjs';
 
 // Hardcoded admin credentials for demo
 const ADMIN_USERNAME = 'admin';
-const ADMIN_PASSWORD = 'admin123'; // In production, use hashed password
+const ADMIN_PASSWORD = 'admin123';
 
 export const login = async (req: Request, res: Response) => {
   try {
